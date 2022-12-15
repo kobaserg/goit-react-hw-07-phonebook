@@ -9,7 +9,7 @@ import {
   FormContact,
   BtnSubmit,
 } from './Contacts.styled';
-import { addContact } from '../../redux/phonebookOperation';
+import { addContact, fetchContacts } from '../../redux/phonebookOperation';
 import { getStoreContacts } from 'redux/phonebookSlice';
 
 export function Contacts() {
@@ -41,7 +41,8 @@ export function Contacts() {
       .map(cont => cont.name.includes(name))
       .includes(true);
     if (!contactIs) {
-      dispatch(addContact({ name, phone, id }));
+      dispatch(addContact({ name, phone }));
+      dispatch(fetchContacts());
     } else {
       alert(`${name} is already in contacts`);
     }

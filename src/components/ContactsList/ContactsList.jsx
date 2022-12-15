@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { getStoreContacts, getStoreFilter } from 'redux/phonebookSlice';
-
+import {
+  getStoreContacts,
+  getStoreFilter,
+  getLoading,
+} from 'redux/phonebookSlice';
+import { Loader } from 'components/Loader/Loader';
 import {
   ListContact,
   ItemContact,
@@ -15,6 +19,7 @@ import { deleteContact } from '../../redux/phonebookOperation';
 export const ContactsList = () => {
   const contactsGallery = useSelector(getStoreContacts);
   const filter = useSelector(getStoreFilter);
+  const loading = useSelector(getLoading);
   const dispatch = useDispatch();
 
   function handleDelete(id) {
@@ -32,24 +37,27 @@ export const ContactsList = () => {
     : (renderList = filterContacts);
 
   return (
-    <ListContact>
-      {renderList.map(cont => {
-        return (
-          <ItemContact key={cont.id}>
-            <Contact>
-              &#9742;
-              <NameCont>
-                <span>{cont.name}</span>
-                <span>{cont.phone}</span>
-              </NameCont>
-            </Contact>
-            <BtnDelete type="submit" onClick={e => handleDelete(cont.id)}>
-              Delete
-            </BtnDelete>
-          </ItemContact>
-        );
-      })}
-    </ListContact>
+    <>
+      {loading && <Loader />}
+      <ListContact>
+        {renderList.map(cont => {
+          return (
+            <ItemContact key={cont.id}>
+              <Contact>
+                &#9742;
+                <NameCont>
+                  <span>{cont.name}</span>
+                  <span>{cont.phone}</span>
+                </NameCont>
+              </Contact>
+              <BtnDelete type="submit" onClick={e => handleDelete(cont.id)}>
+                Delete
+              </BtnDelete>
+            </ItemContact>
+          );
+        })}
+      </ListContact>
+    </>
   );
 };
 

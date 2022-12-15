@@ -58,5 +58,6 @@ export const bookReducer = phonebookSlice.reducer;
 
 export const getStoreContacts = state => state.book.contacts.items;
 export const getStoreFilter = state => state.book.filter;
+export const getLoading = state => state.book.contacts.isLoading;
 
 export const { isFilter } = phonebookSlice.actions;
