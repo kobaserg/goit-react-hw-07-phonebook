@@ -41,7 +41,7 @@ export function Contacts() {
       .map(cont => cont.name.includes(name))
       .includes(true);
     if (!contactIs) {
-      dispatch(addContact({ name, phone }));
+      dispatch(addContact({ name, phone, id }));
       dispatch(fetchContacts());
     } else {
       alert(`${name} is already in contacts`);
