@@ -5,15 +5,15 @@ import { isFilter } from 'redux/phonebookSlice';
 
 export function Filter() {
   const dispatch = useDispatch();
-  function handleFilter(event) {
-    dispatch(isFilter(event.target.value));
-  }
 
   return (
     <div>
       <h3>Find contact by Name</h3>
       <label>
-        <input type="text" onChange={handleFilter}></input>
+        <input
+          type="text"
+          onChange={event => dispatch(isFilter(event.target.value))}
+        ></input>
       </label>
     </div>
   );

@@ -3,7 +3,7 @@ import { theme } from '../theme';
 
 export const ListContact = styled.ul`
   padding-left: 0;
-  width: 300px;
+  width: 1500px;
 `;
 
 export const ItemContact = styled.div`
@@ -14,7 +14,7 @@ export const ItemContact = styled.div`
 
 export const Contact = styled.li`
   display: flex;
-  width: 300px;
+  width: 400px;
 `;
 
 export const NameCont = styled.div`

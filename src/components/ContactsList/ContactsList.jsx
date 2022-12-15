@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  removeContact,
-  getStoreContacts,
-  getStoreFilter,
-} from 'redux/phonebookSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { getStoreContacts, getStoreFilter } from 'redux/phonebookSlice';
 
 import {
   ListContact,
@@ -14,14 +10,15 @@ import {
   NameCont,
   BtnDelete,
 } from './ContactsList.styled';
+import { deleteContact } from '../../redux/phonebookOperation';
 
 export const ContactsList = () => {
-  const dispatch = useDispatch();
   const contactsGallery = useSelector(getStoreContacts);
   const filter = useSelector(getStoreFilter);
+  const dispatch = useDispatch();
 
   function handleDelete(id) {
-    dispatch(removeContact(id));
+    dispatch(deleteContact(id));
   }
 
   let renderList = [];
@@ -42,8 +39,8 @@ export const ContactsList = () => {
             <Contact>
               &#9742;
               <NameCont>
-                <span>{cont.name} :</span>
-                <span>{cont.number}</span>
+                <span>{cont.name}</span>
+                <span>{cont.phone}</span>
               </NameCont>
             </Contact>
             <BtnDelete type="submit" onClick={e => handleDelete(cont.id)}>
