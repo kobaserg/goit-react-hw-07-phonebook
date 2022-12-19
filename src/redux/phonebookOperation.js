@@ -16,8 +16,8 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (newContact, thunkAPI) => {
-    const { name, phone } = newContact;
     try {
+      const { name, phone } = newContact;
       const response = await phonebookApi.addContacts(name, phone);
       return response;
     } catch (error) {

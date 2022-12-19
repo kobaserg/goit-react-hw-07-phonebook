@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -9,11 +8,10 @@ import {
   FormContact,
   BtnSubmit,
 } from './Contacts.styled';
-import { addContact, fetchContacts } from '../../redux/phonebookOperation';
+import { addContact } from '../../redux/phonebookOperation';
 import { getStoreContacts } from 'redux/phonebookSlice';
 
 export function Contacts() {
-  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
@@ -32,7 +30,6 @@ export function Contacts() {
       default:
         return;
     }
-    setId(nanoid());
   };
 
   const handleSubmit = event => {
@@ -41,8 +38,7 @@ export function Contacts() {
       .map(cont => cont.name.includes(name))
       .includes(true);
     if (!contactIs) {
-      dispatch(addContact({ name, phone, id }));
-      dispatch(fetchContacts());
+      dispatch(addContact({ name, phone }));
     } else {
       alert(`${name} is already in contacts`);
     }
@@ -51,7 +47,6 @@ export function Contacts() {
   };
 
   const resetForm = () => {
-    setId('');
     setName('');
     setPhone('');
   };

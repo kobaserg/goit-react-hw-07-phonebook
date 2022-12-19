@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { fetchContacts } from '../../redux/phonebookOperation';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getStoreContacts,
@@ -21,6 +22,10 @@ export const ContactsList = () => {
   const filter = useSelector(getStoreFilter);
   const loading = useSelector(getLoading);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   function handleDelete(id) {
     dispatch(deleteContact(id));

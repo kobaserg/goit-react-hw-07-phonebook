@@ -13,11 +13,14 @@ export async function getContacts() {
 
 export async function addContacts(name, phone) {
   try {
-    await axios.post('https://638e4e0d4190defdb75bee2f.mockapi.io/contacts', {
-      name,
-      phone,
-    });
-    return;
+    const response = await axios.post(
+      'https://638e4e0d4190defdb75bee2f.mockapi.io/contacts',
+      {
+        name,
+        phone,
+      }
+    );
+    return response;
   } catch (error) {
     console.error(error);
   }
